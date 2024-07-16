@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> st;
+        if(s.size()==1) return false;
+        for(int i=0;i<s.size();i=i+1){
+            if(s[i]=='(' || s[i]=='[' || s[i]=='{') st.push(s[i]);
+            else {
+                if(st.size()==0) return false;
+                else if(st.size()>0 && s[i]==')' && st.top()!='(') return false;
+                else if  (st.size()>0 && s[i]==']' && st.top()!='[') return false;
+                 else if(st.size()>0 && s[i]=='}' && st.top()!='{') return false;
+                 else{
+                    st.pop();
+                 }
+            }
+        }
+        // while(st.size()){
+        //     cout<<st.top()<<" ";
+        //     st.pop();
+        // }
+        if(st.size()==0) return true;
+        else return false;
+    }
+};
